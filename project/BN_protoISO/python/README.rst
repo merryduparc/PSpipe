@@ -15,15 +15,25 @@ You can run each code independently in the same order as ``ACT_DR6/dr6xplanck.rs
 
     salloc --nodes 1 --qos interactive --time 01:00:00 --constraint cpu
     bash PSpipe/project/BN_protoISO/python/spectra_pipeline.sh
+    # around 50min
 
 Remember that this will create ``windows``, ``mcms``, ``alms`` ans ``spectra`` folders at the location you run this command.
+
+You can also use it to run only the beginning or the end of the pipeline : 
+
+.. code:: shell
+
+    bash PSpipe/project/BN_protoISO/python/spectra_pipeline.sh pre
+    # This will only compute windows and mcms (around 45min)
+    bash PSpipe/project/BN_protoISO/python/spectra_pipeline.sh post
+    # This will only compute alms and spectra using existing mcms and windows (around 5min)
 
 
 Some details about the products
 -------------------------------------------------------
 
-Masks at ``/global/cfs/cdirs/sobs/lat-iso/ps/BN/masks`` are made but thresholding ivar BOSS-N maps, or from ACT DR6 (for point sources and galactic mask).
-There are also 'restrictive' masks (with _restr suffix) for i3 and i6 tubes that have a more uneven coverage. These cover a part of the patch that is significantly better covered.
+Masks at ``/global/cfs/cdirs/sobs/lat-iso/ps/BN/masks`` are made by thresholding ivar BOSS-N maps, or from ACT DR6 (for point sources and galactic mask).
+There are also 'restrictive' masks (with _restr suffix) for i3 and i6 tubes that have a more uneven coverage. These masks only cover the part of the patch that has a significantly better coverage.
 
 The k-space filter used is also the same as ACT DR6.
 
